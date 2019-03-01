@@ -2,10 +2,10 @@
 target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absolum-min-1014x789.png"></a></p>
 
 
-<h1 align="center">Documentation template (Title)</h1>
+<h1 align="center">Apache-VHC</h1>
 
 
-<p align="center">Easy, clean and maintainable (Subtitle)</p>
+<p align="center">Easy to use Apache (sub)domain creator.</p>
 
 
 <p align="center"> 
@@ -15,38 +15,30 @@ target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absol
 </p>
 
 
-## Tips/Announcements (Soft Introduction)
-- :page_facing_up: <a href="https://github.com/Absolum1/Shields" target="_blank"> All of our shields</a>
-- :clipboard: <a href="https://www.webfx.com/tools/emoji-cheat-sheet/" target="_blank"> Emoji cheatsheet</a>
+## Tags
+- :page_facing_up: Apache
+- :computer: Ubuntu tested
+- :snake: Python
 - 🎉 Open source
 
 
-## Why did we make this? (Explanation)
-We made this to streamline our GitHub repositories with one clean template, 
+## Apache-VHC
+Apache-VHC is a spin of [avhCreator](https://github.com/rakibtg/Apache-Virtual-Hosts-Creator/blob/master/avhCreator.py) And it is used to automate the creation and setup of new (sub)domains on Apache. 
 
-which is easier to maintain and to build.
+## Prerequisites
+1. Apache server configured [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-16-04)
+2. Dns setup correctly (pointing at your server)
+3. Python installed (```sudo apt-get install python```)
 
+## Installation
+1. ```sudo apt-get update```
+2. ```wget https://raw.githubusercontent.com/Absolum1/Apache-VHC/master/VHC.py```
+3. That's it
 
-## How to use the template (Guide)
-Download, fork or clone the  ```README.md``` file and edit it to your contents
-it's that easy.
+## Usage
+1. ```sudo python VHC.py```
+2. Answer the questions
 
+## Bonus
+- Setup [certbot](https://certbot.eff.org/lets-encrypt/ubuntubionic-apache) for easy ssl certificates
 
-### How to download, fork or clone (Step-by-step guide)
-
-
-#### Download
-Go to the green button that says download and download the zip file.
-
-![Screenshot of Download](https://i.imgur.com/t9RwKFR.png)
-
-#### Fork
-Go to the top right corner of the page and click fork
-
-![Screenshot of forking](https://i.imgur.com/XddsK5g.png)
-
-#### Clone
-1. Go to your terminal of choice
-2. Check if git is installed via ```git --version``` (if nothing is returned you don't have git installed)
-2.1 Install git ```sudo apt-get git``` (optional) 
-3. ```git clone https://github.com/Absolum1/Documentation-template.git```
