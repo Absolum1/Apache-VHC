@@ -11,17 +11,17 @@ def newline():
     print ""
 
 def new_hosts(domain):
-    msg(" What would be the public directory name? \n - Press enter to keep default name (\"public\") ")
+    msg(" What would be the public directory name? \n - Press enter to keep default name (\"public_html\") ")
     public_dir = raw_input()
 
     # Chceck and set name of the public directory.
     if public_dir == "":
-        public_dir = "public"
+        public_dir = "public_html"
     
     newline()
         
     # Define the webserver parent directory
-    msg(" What would be the server parent directory? \n - Press enter to keep \"/var/www/\" as default location ")
+    msg(" What would be the server parent directory? \n - Press enter to keep \"/var/www/\" as default location. ")
     server_parent_dir = raw_input()
     if server_parent_dir == "":
         server_parent_dir = "/var/www/"
@@ -30,7 +30,7 @@ def new_hosts(domain):
             msg(" Parent directory (\""+server_parent_dir+"\") was not found! \n Please enter server parent directory again: ")
             server_parent_dir = raw_input()
         else:
-            msg(" Server parent directory has changed ")
+            msg(" Server parent directory has changed to:(\""+server_parent_dir+"\") ")
 
     newline()
 
@@ -56,7 +56,14 @@ def new_hosts(domain):
 
     msg(" Adding A Demo Page ")
     file_object = open(server_parent_dir+domain+"/"+public_dir+"/index.html", "w")
-    file_object.write("<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Virtual Hosts Created Successfully!</title><style>html{background-color: #508bc9;color: #fff;font-family: sans-serif, arial;}.container{width: 80%;margin: auto auto;}.inl{text-align: center;}.inl img{border-radius: 10px;}a{color: #f2d8ab;}</style></head><body><div class='container'><h1>Virtual Hosts Created Successfully!</h1><p><b>Apache Virtual Hosts Generator</b> has successfully created a virtual host in your server.<br>We can code it better! Join at <a href='https://github.com/rakibtg/Apache-Virtual-Hosts-Creator' target='_blank'>GitHub</a><br>Created by <a href='https://www.twitter.com/rakibtg' target='_blank'>Hasan</a></p><div class='divider'><div class='inl'><h1>Let's celebrate!</h1><img src='http://i.imgur.com/vCbBhwy.gif' alt='Scene from Spider Man Movie (C) Spider Man Movie ..'></div></div></div></body></html>")
+    file_object.write("<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Virtual Hosts Created Successfully!</title><style>html{background-color: #508bc9; color: #fff;font-family: sans-serif, arial;}.container{width: 80%;margin: auto  auto;}.inl{text-align: center;}.inl img{border-radius: 10px;}a{color: #f2d8ab;  }</style></head><body><div class='container'><h1>Virtual Hosts Created Successfully!</h1><p><b>Apache-VHC</b> has successfully created a virtual host on your server.</body></html>")
+    file_object.close()
+
+    newline()
+    
+    msg(" Adding A .htaccess file ")
+    file_object = open(server_parent_dir+domain+"/"+public_dir+"/.htaccess", "w")
+    file_object.write("Options +MultiViewsRewriteEngine OnRewriteCond %{HTTPS}!onRewriteCond %{REQUEST_FILENAME}!-d RewriteCond %{REQUEST_FILENAME}\.html -f RewriteRule ^(.*)$ $1.htmlRewriteCond %{REQUEST_URI}!^/[0-9]+\..+\.cpaneldcv$RewriteCond %{REQUEST_URI}!^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}RewriteCond %{REQUEST_FILENAME}!-fRewriteRule ^([^/]+)/$ $1.htmlRewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.htmlRewriteCond %{REQUEST_FILENAME}!-fRewriteCond %{REQUEST_FILENAME}!-dRewriteCond %{REQUEST_URI}!(\.[a-zA-Z0-9]{1,5}|/)$RewriteRule (.*)$ /$1/ [R=301,L]<IfModule mod_deflate.c>AddOutputFilterByType DEFLATE text/plainAddOutputFilterByType DEFLATE text/htmlAddOutputFilterByType DEFLATE text/xmlAddOutputFilterByType DEFLATE text/cssAddOutputFilterByType DEFLATE application/xmlAddOutputFilterByType DEFLATE application/xhtml+xmlAddOutputFilterByType DEFLATE application/rss+xmlAddOutputFilterByType DEFLATE application/javascriptAddOutputFilterByType DEFLATE application/x-javascript# Remove browser bugs (only needed for really old browsers)BrowserMatch ^Mozilla/4 gzip-only-text/htmlBrowserMatch ^Mozilla/4\.0[678] no-gzipBrowserMatch \bMSIE !no-gzip !gzip-only-text/htmlHeader append Vary User-Agent</IfModule><IfModule mod_expires.c>ExpiresActive On# ImagesExpiresByType image/jpeg "access plus 1 year"ExpiresByType image/gif "access plus 1 year"ExpiresByType image/png "access plus 1 year"ExpiresByType image/webp "access plus 1 year"ExpiresByType image/svg+xml "access plus 1 year"ExpiresByType image/x-icon "access plus 1 year"# VideoExpiresByType video/mp4 "access plus 1 year"ExpiresByType video/mpeg "access plus 1 year"# CSS, JavaScriptExpiresByType text/css "access plus 1 month"ExpiresByType text/javascript "access plus 1 month"ExpiresByType application/javascript "access plus 1 month"# OthersExpiresByType application/pdf "access plus 1 month"ExpiresByType application/x-shockwave-flash "access plus 1 month"</IfModule>")
     file_object.close()
 
     newline()
@@ -75,7 +82,7 @@ def new_hosts(domain):
 
     newline()
 
-    msg(" Restarting Apache ")
+    msg(" Restarting Apache Server ")
     os.system("sudo service apache2 restart")
     os.system("service apache2 reload")
 
@@ -85,7 +92,7 @@ def new_hosts(domain):
     if host_flag == 0:
         os.system("sudo sed -i -e '1i127.0.1.1   "+domain+"\' \"/etc/hosts\"")
     else:
-        print " Skipped! "
+        print " There already is a Local Host File. "
 
     print "\nSuccess! Please visit http://"+domain+"/ from any web browser\n\n"
 
@@ -93,7 +100,7 @@ host_flag = 0
 
 newline()
 
-print "\n Welcome to Apache Virtual Hosts Creator\n - This script will setup a Apache Virtual Hosts for you\n - All you have to do, answer few questions\n - Make sure you have Apache configured\n"
+print "\n Welcome to Apache-VHC\n - This script will setup and configure Apache Virtual Hosts for you.\n - All you have to do is answer these questions.\n - IMPORTANT: Make sure you have Apache configured.\n"
 
 newline()
 
@@ -101,17 +108,17 @@ msg(" What would be the domain name? ")
 domain = raw_input()
 
 if os.path.exists("/var/www/"+domain):
-    msg(" IMPORTANT: It seems that you have already configured a virtual hosts with the same domain name \n If you continue then all your data of http://"+domain+"/ will be overwritten and can not be undo \n Continue? (yes/no) ")
+    msg(" IMPORTANT: It seems that you have already configured a virtual hosts with the same domain name \n If you continue then all your data of "+domain+" will be overwritten and this cannot be undone \n Do you wan to continue? (yes/no) ")
     flag = raw_input()
     host_flag = 1
 
     if (flag == "no" or flag == ""):
         newline()
-        msg(" New Virtual Hosts was not created due to conflict \n Please choose a different name and try again. ")
+        msg(" New Virtual Host was not created due to a conflict. \n Please choose a different name and try again. ")
         newline()
     if flag == "yes":
         newline()
-        msg(" Existing host will be overwritten ... ")
+        msg(" Existing host "+domain+" will be overwritten ... ")
         new_hosts(domain)
 else:
     new_hosts(domain)
