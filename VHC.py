@@ -24,7 +24,7 @@ def new_hosts(domain):
     msg(" What would be the server parent directory? \n - Press enter to keep \"/var/www/\" as default location. ")
     server_parent_dir = raw_input()
     if server_parent_dir == "":
-        server_parent_dir = "/var/www/"
+        server_parent_dir = "/var/www"
     else:
         if os.path.exists(server_parent_dir) == False:
             msg(" Parent directory (\""+server_parent_dir+"\") was not found! \n Please enter server parent directory again: ")
