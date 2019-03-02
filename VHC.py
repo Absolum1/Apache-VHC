@@ -60,13 +60,6 @@ def new_hosts(domain):
     file_object.close()
 
     newline()
-    
-    msg(" Adding A .htaccess file ")
-    file_object = open(server_parent_dir+domain+"/"+public_dir+"/.htaccess", "w")
-    file_object.write("Options +MultiViewsRewriteEngine OnRewriteCond %{HTTPS}!onRewriteCond %{REQUEST_FILENAME}!-d RewriteCond %{REQUEST_FILENAME}\.html -f RewriteRule ^(.*)$ $1.htmlRewriteCond %{REQUEST_URI}!^/[0-9]+\..+\.cpaneldcv$RewriteCond %{REQUEST_URI}!^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}RewriteCond %{REQUEST_FILENAME}!-fRewriteRule ^([^/]+)/$ $1.htmlRewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.htmlRewriteCond %{REQUEST_FILENAME}!-fRewriteCond %{REQUEST_FILENAME}!-dRewriteCond %{REQUEST_URI}!(\.[a-zA-Z0-9]{1,5}|/)$RewriteRule (.*)$ /$1/ [R=301,L]<IfModule mod_deflate.c>AddOutputFilterByType DEFLATE text/plainAddOutputFilterByType DEFLATE text/htmlAddOutputFilterByType DEFLATE text/xmlAddOutputFilterByType DEFLATE text/cssAddOutputFilterByType DEFLATE application/xmlAddOutputFilterByType DEFLATE application/xhtml+xmlAddOutputFilterByType DEFLATE application/rss+xmlAddOutputFilterByType DEFLATE application/javascriptAddOutputFilterByType DEFLATE application/x-javascript# Remove browser bugs (only needed for really old browsers)BrowserMatch ^Mozilla/4 gzip-only-text/htmlBrowserMatch ^Mozilla/4\.0[678] no-gzipBrowserMatch \bMSIE !no-gzip !gzip-only-text/htmlHeader append Vary User-Agent</IfModule><IfModule mod_expires.c>ExpiresActive On# ImagesExpiresByType image/jpeg "access plus 1 year"ExpiresByType image/gif "access plus 1 year"ExpiresByType image/png "access plus 1 year"ExpiresByType image/webp "access plus 1 year"ExpiresByType image/svg+xml "access plus 1 year"ExpiresByType image/x-icon "access plus 1 year"# VideoExpiresByType video/mp4 "access plus 1 year"ExpiresByType video/mpeg "access plus 1 year"# CSS, JavaScriptExpiresByType text/css "access plus 1 month"ExpiresByType text/javascript "access plus 1 month"ExpiresByType application/javascript "access plus 1 month"# OthersExpiresByType application/pdf "access plus 1 month"ExpiresByType application/x-shockwave-flash "access plus 1 month"</IfModule>")
-    file_object.close()
-
-    newline()
 
     msg(" Creating Virtual Host File ")
     host_file = open("/tmp/"+domain+".conf", "w")
