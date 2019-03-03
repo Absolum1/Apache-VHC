@@ -14,7 +14,7 @@ def new_hosts(domain):
     msg(" What would be the public directory name? \n - Press enter to keep default name (\"public_html\") ")
     public_dir = raw_input()
 
-    # Chceck and set name of the public directory.
+    # Check and set name of the public directory.
     if public_dir == "":
         public_dir = "public_html"
     
@@ -48,7 +48,7 @@ def new_hosts(domain):
         newline()
 
         msg(" Making Sure Read Access is Permitted ")
-        os.system("sudo chmod -R 755 "+server_parent_dir+"/"+public_dir)
+        os.system("sudo chmod -R 755 "+server_parent_dir+domain+"/"+public_dir)
     else:
         msg( "Permission process skipped" )
 
