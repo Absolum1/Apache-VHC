@@ -17,9 +17,9 @@ def new_hosts(domain):
     # Check and set name of the public directory.
     if public_dir == "":
         public_dir = "public_html"
-    
+
     newline()
-        
+
     # Define the webserver parent directory
     msg(" What would be the server parent directory? \n - Press enter to keep \"/var/www/\" as default location. ")
     server_parent_dir = raw_input()
@@ -44,11 +44,12 @@ def new_hosts(domain):
     if (uper == "Y" or uper == "y"):
         msg(" Granting Proper Permissions ")
         os.system("sudo chown -R $USER:$USER "+server_parent_dir+domain+"/"+public_dir)
-
+        print("Proper Permissions Granted")
         newline()
 
         msg(" Making Sure Read Access is Permitted ")
         os.system("sudo chmod -R 755 "+server_parent_dir+domain+"/"+public_dir)
+        print("Read Access is Permitted")
     else:
         msg( "Permission process skipped" )
 
@@ -58,6 +59,7 @@ def new_hosts(domain):
     file_object = open(server_parent_dir+domain+"/"+public_dir+"/index.html", "w")
     file_object.write("<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Virtual Hosts Created Successfully!</title><style>html{background-color: #508bc9; color: #fff;font-family: sans-serif, arial;}.container{width: 80%;margin: auto  auto;}.inl{text-align: center;}.inl img{border-radius: 10px;}a{color: #f2d8ab;  }</style></head><body><div class='container'><h1>Virtual Hosts Created Successfully!</h1><p><b>Apache-VHC</b> has successfully created a virtual host on your server.</body></html>")
     file_object.close()
+    print("Demo Page Added")
 
     newline()
 
@@ -66,6 +68,7 @@ def new_hosts(domain):
     host_file.write("<VirtualHost *:80>\nServerAdmin localserver@localhost\nServerName "+domain+"\nServerAlias www."+domain+"\nDocumentRoot "+server_parent_dir+domain+"/"+public_dir+"\nErrorLog ${APACHE_LOG_DIR}/error.log\nCustomLog ${APACHE_LOG_DIR}/access.log combined\n</VirtualHost>")
     host_file.close()
     os.system("sudo mv \"/tmp/"+domain+".conf\" \"/etc/apache2/sites-available/\"")
+    print("Virtual Host File added")
 
     newline()
 
@@ -78,6 +81,7 @@ def new_hosts(domain):
     msg(" Restarting Apache Server ")
     os.system("sudo service apache2 restart")
     os.system("service apache2 reload")
+    print("Apache Server Restarted")
 
     newline()
 
@@ -101,7 +105,7 @@ msg(" What would be the domain name? ")
 domain = raw_input()
 
 if os.path.exists("/var/www/"+domain):
-    msg(" IMPORTANT: It seems that you have already configured a virtual hosts with the same domain name \n If you continue then all your data of "+domain+" will be overwritten and this cannot be undone \n Do you wan to continue? (yes/no) ")
+    msg(" IMPORTANT: It seems that you have already configured a virtual hosts with the same domain name \n If you continue then all your data of "+domain+" will be overwritten and this cannot be undone \n Do you want to continue? (yes/no) ")
     flag = raw_input()
     host_flag = 1
 
