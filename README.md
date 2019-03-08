@@ -11,7 +11,7 @@ target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absol
 <p align="center"> 
 <a href="https://absolum.nl"><img src="https://img.shields.io/badge/website-absolum.nl-lightgrey.svg" alt="Website"></a>
 <a href="https://github.com/absolum1"><img src="https://img.shields.io/badge/build-success-lightgrey.svg" alt="Build"></a>
-<a href="https://absolum.nl/mitlicense"><img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="License"></a>
+<a href="https://absolum.nl/Licenses"><img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="License"></a>
 </p>
 
 
