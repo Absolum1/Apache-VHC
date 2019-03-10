@@ -5,7 +5,7 @@ target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absol
 <h1 align="center">Apache-VHC</h1>
 
 
-<p align="center">Easy to use Apache (sub)domain creator.</p>
+<p align="center">Easy to use Apache (sub)domain creator</p>
 
 
 <p align="center"> 
