@@ -17,7 +17,6 @@ target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absol
 
 ## Tags
 - :page_facing_up: Apache
-- :computer: Ubuntu tested
 - :snake: Python
 - 🎉 Open source
 
