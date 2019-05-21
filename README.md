@@ -1,5 +1,5 @@
 <p align="center"><a href="https://github.com/absolum1"
-target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absolum-min-1014x789.png"></a></p>
+target="_blank"><br><img width="200" src="https://absolum.nl/assets/images/absolum-logo1.svg"></a></p>
 
 
 <h1 align="center">Apache-VHC</h1>
